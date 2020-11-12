@@ -1,0 +1,21 @@
+*{
+	box-sizing: border-box;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+.container{
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.lists{
+	display: flex;
+}
+.clicked{
+	font-size: 1.1rem;
+	font-weight: bold;
+}
