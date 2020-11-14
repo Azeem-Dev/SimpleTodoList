@@ -106,7 +106,7 @@ let listItems = document.querySelectorAll('.task-list li');
 
 });
 
-// Toggle strikethrough in task list
+// Toggle strikethrough in task list---Initially
 
 taskClicked.forEach(task=>{
 task.addEventListener('click',gettingCheckedArray);
@@ -144,6 +144,7 @@ function gettingCheckedArray(){
 
 // Task add button control
 taskAddButton.addEventListener('click',add=>{
+
 	add.preventDefault();
 	// Loading the template into our js file
 	const taskElement=document.importNode(taskTemplate.content,true);
@@ -164,7 +165,7 @@ taskAddButton.addEventListener('click',add=>{
 	taskClicked=document.querySelectorAll('.task');
 
 
-	// Toggle strikethrough in task list
+	// Toggle strikethrough in task list--- after adding every new task 
 
 	taskClicked.forEach(task=>{
 	task.addEventListener('click',gettingCheckedArray);
