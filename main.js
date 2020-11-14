@@ -6,13 +6,22 @@ const button=document.querySelector('[data-new-list-item-button]');
 
 // right list
 const heading=document.querySelector('.selected-list-task');
+const taskInput=document.querySelector('[data-new-list-item-text-task]');
+const taskAddButton=document.querySelector('[data-new-list-item-button-task]');
+const taskElementsChecker = document.querySelectorAll('.tasks .task input');
+const taskLabel=document.querySelectorAll('.tasks .task input label');
+const taskClicked=document.querySelectorAll('.task');
+
+
+// Creating a template element in main html and trying to access it using js
+const taskTemplate=document.querySelector('#task-template');
 
 let selectedItemId;
 let listItemArray=[];
 let i=0;
 
-
 let list=[];
+
 
 // EventListener on our button
 button.addEventListener('click',function(event){
@@ -97,3 +106,34 @@ let listItems = document.querySelectorAll('.task-list li');
 	heading.innerText=targettedItemValue;
 
 });
+
+
+
+// Checking which checkbox was selected and making sure we apply a strikethrough on it
+function gettingCheckedArray(){
+	//Making an index variable so that we can change the elements of array
+	let index=0;
+	let notSelected=[];
+
+	taskElementsChecker.forEach(task=>{
+		index++;
+
+		if (task.checked===true) {
+
+			taskClicked[index-1].classList.add('checkedStrikeThrough');
+		}
+		else{
+
+			notSelected.push(taskClicked[index-1]);
+
+			notSelected.forEach(not=>{
+				not.classList.remove('checkedStrikeThrough');
+			});
+			
+		}
+
+
+		
+	});
+
+}
