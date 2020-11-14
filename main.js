@@ -10,7 +10,7 @@ const taskInput=document.querySelector('[data-new-list-item-text-task]');
 const taskAddButton=document.querySelector('[data-new-list-item-button-task]');
 const taskElementsChecker = document.querySelectorAll('.tasks .task input');
 const taskLabel=document.querySelectorAll('.tasks .task input label');
-const taskClicked=document.querySelectorAll('.task');
+let taskClicked=document.querySelectorAll('.task');
 const tasks = document.querySelector('.tasks');
 
 // Creating a template element in main html and trying to access it using js
@@ -115,6 +115,7 @@ taskClicked.forEach(task=>{
 
 // Checking which checkbox was selected and making sure we apply a strikethrough on it
 function gettingCheckedArray(){
+	taskClicked=document.querySelectorAll('.task');
 	//Making an index variable so that we can change the elements of array
 	let index=0;
 	let notSelected=[];
@@ -141,3 +142,19 @@ function gettingCheckedArray(){
 	});
 
 }
+
+// Task add button control
+taskAddButton.addEventListener('click',add=>{
+	add.preventDefault();
+
+	const taskElement=document.importNode(taskTemplate.content,true);
+	const checkbox=taskElement.querySelector('input');
+	checkbox.checked=false;
+	const label =taskElement.querySelector('label');
+	let inputValue=taskInput.value;
+	label.innerText=inputValue;
+	tasks.appendChild(taskElement);
+
+});
+
+gettingCheckedArray();
