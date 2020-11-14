@@ -8,7 +8,7 @@ const button=document.querySelector('[data-new-list-item-button]');
 const heading=document.querySelector('.selected-list-task');
 const taskInput=document.querySelector('[data-new-list-item-text-task]');
 const taskAddButton=document.querySelector('[data-new-list-item-button-task]');
-const taskElementsChecker = document.querySelectorAll('.tasks .task input');
+let taskElementsChecker = document.querySelectorAll('.tasks .task input');
 const taskLabel=document.querySelectorAll('.tasks .task input label');
 let taskClicked=document.querySelectorAll('.task');
 const tasks = document.querySelector('.tasks');
@@ -106,16 +106,16 @@ let listItems = document.querySelectorAll('.task-list li');
 
 });
 
-
-
 // Toggle strikethrough in task list
+
 taskClicked.forEach(task=>{
-	task.addEventListener('click',gettingCheckedArray);
+task.addEventListener('click',gettingCheckedArray);
 });
+
+
 
 // Checking which checkbox was selected and making sure we apply a strikethrough on it
 function gettingCheckedArray(){
-	taskClicked=document.querySelectorAll('.task');
 	//Making an index variable so that we can change the elements of array
 	let index=0;
 	let notSelected=[];
@@ -136,25 +136,39 @@ function gettingCheckedArray(){
 			});
 			
 		}
-
-
 		
 	});
 
 }
 
+
 // Task add button control
 taskAddButton.addEventListener('click',add=>{
 	add.preventDefault();
-
+	// Loading the template into our js file
 	const taskElement=document.importNode(taskTemplate.content,true);
 	const checkbox=taskElement.querySelector('input');
-	checkbox.checked=false;
+	// checkbox.checked=false;
+	let newIdforCheckbox=Date.now();
+	checkbox.id=newIdforCheckbox;
 	const label =taskElement.querySelector('label');
+	label.htmlFor=newIdforCheckbox;
 	let inputValue=taskInput.value;
-	label.innerText=inputValue;
+	label.append(inputValue);
 	tasks.appendChild(taskElement);
+	taskInput.value='';
+
+	// Updating after every button click about new element that was added
+
+	taskElementsChecker = document.querySelectorAll('.tasks .task input');
+	taskClicked=document.querySelectorAll('.task');
+
+
+	// Toggle strikethrough in task list
+
+	taskClicked.forEach(task=>{
+	task.addEventListener('click',gettingCheckedArray);
+	});
 
 });
 
-gettingCheckedArray();
