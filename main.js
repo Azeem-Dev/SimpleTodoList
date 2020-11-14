@@ -11,15 +11,14 @@ const taskAddButton=document.querySelector('[data-new-list-item-button-task]');
 const taskElementsChecker = document.querySelectorAll('.tasks .task input');
 const taskLabel=document.querySelectorAll('.tasks .task input label');
 const taskClicked=document.querySelectorAll('.task');
-
+const tasks = document.querySelector('.tasks');
 
 // Creating a template element in main html and trying to access it using js
 const taskTemplate=document.querySelector('#task-template');
 
 let selectedItemId;
-let listItemArray=[];
 let i=0;
-
+let selectedItemValue;
 let list=[];
 
 
@@ -89,7 +88,7 @@ let listItems = document.querySelectorAll('.task-list li');
 		// Getting selected element listId
 		selectedItemId=e.target.getAttribute('data-list-id');
 		targettedItemValue=e.target.innerText;
-		
+		selectedItemValue=targettedItemValue;
 	}
 
 	// Checking our whole list items for clicked class
@@ -108,6 +107,11 @@ let listItems = document.querySelectorAll('.task-list li');
 });
 
 
+
+// Toggle strikethrough in task list
+taskClicked.forEach(task=>{
+	task.addEventListener('click',gettingCheckedArray);
+});
 
 // Checking which checkbox was selected and making sure we apply a strikethrough on it
 function gettingCheckedArray(){
